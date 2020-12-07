@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
     void Move(Vector2 direction) {
         Debug.Log("Player moved to: " + direction);  
         horizontalMove = direction.x;
-        if (direction.y == 1) {
+        if (direction.y > 0) {
             jump = true;
         }
-        if (direction.y == -1 ) {
+        if (direction.y < 0 ) {
             crouch = true;
         } else if (direction.y != -1) {
             crouch = false;  
