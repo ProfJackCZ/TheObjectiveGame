@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController2D controller;
     private InputMaster controls;
+    public Animator animator;
 
     public float runSpeed = 40f;
 
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move(Vector2 direction) {
-        Debug.Log("Player moved to: " + direction);  
+        Debug.Log("Player tried move to: " + direction);  
         horizontalMove = direction.x;
         if (direction.y > 0) {
             jump = true;
@@ -57,27 +58,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    /*void Update() {
+    void Update() {
+        //animator.SetFloat(Speed)
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        
-        if (Input.GetButtonDown("Jump")) {
-            jump = true;
-        }
-
-        if (Input.GetButtonDown("Crouch")) {
-            crouch = true;
-        } else if (Input.GetButtonUp("Crouch")) {
-            crouch = false;
-        }
-
-    }*/
+    }
 
 
 
     void FixedUpdate() {
-        //Debug.Log(Time.fixedDeltaTime);
         controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, crouch, jump);
         jump = false;
 
